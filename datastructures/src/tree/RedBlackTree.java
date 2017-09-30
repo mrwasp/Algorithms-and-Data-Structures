@@ -15,7 +15,7 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 
     @Override
     String getName() {
-        return "Red Black Tree";
+        return "RedBlackTree";
     }
 
     // @Override BinarySearchTree class methods //----------------------------------------------------------------------

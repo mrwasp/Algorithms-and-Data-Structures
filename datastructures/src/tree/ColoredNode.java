@@ -7,7 +7,7 @@ class ColoredNode<T> extends BinaryNode<T> {
 
     private boolean color;
 
-    ColoredNode(T object, BinaryNode<T> parent) {
+    ColoredNode(T object, ColoredNode<T> parent) {
         super(object, parent);
         this.color = RED;
     }

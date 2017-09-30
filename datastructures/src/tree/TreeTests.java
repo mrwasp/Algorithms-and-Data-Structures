@@ -22,6 +22,11 @@ public class TreeTests {
         treeTest(new RedBlackTree<>());
     }
 
+    @Test
+    public void avlTreeTest() {
+        treeTest(new AvlTree<>());
+    }
+
     private void treeTest(BinaryTree<Integer> binaryTree) {
 
         List<Integer> numbers = IntStream.range(1, SIZE + 1).boxed().collect(Collectors.toList());
