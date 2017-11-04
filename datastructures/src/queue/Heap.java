@@ -11,12 +11,13 @@ public class Heap<T extends Comparable<T>> implements Queue<T> {
   }
 
   public Heap(T[] values) {
-    size = DEFAULT_SIZE;
-    while (size < values.length) {
-      size *= 2;
+    int array_size = DEFAULT_SIZE;
+    while (array_size < values.length) {
+      array_size *= 2;
     }
-    this.values = new Object[size];
-    System.arraycopy(values, 0, this.values, 0, values.length);
+    this.values = new Object[array_size];
+    this.size = values.length;
+    System.arraycopy(values, 0, this.values, 1, values.length);
     for (int i = size / 2; i >= 1; i--) {
       downHeap(i);
     }
@@ -37,12 +38,12 @@ public class Heap<T extends Comparable<T>> implements Queue<T> {
 
   @Override
   public void insert(T value) {
-    if (values.length == size) {
-      Object[] temp = new Object[2 * size];
-      System.arraycopy(values, 0, temp, 0, size);
+    if (values.length == size + 1) {
+      Object[] temp = new Object[2 * values.length];
+      System.arraycopy(values, 0, temp, 0, values.length);
       values = temp;
     }
-    values[size++] = value;
+    values[++size] = value;
     upHeap(size);
   }
 
@@ -52,9 +53,8 @@ public class Heap<T extends Comparable<T>> implements Queue<T> {
   }
 
   private void upHeap(int i) {
-    values[0] = null;
     T value = get(i);
-    while (value.compareTo(get(i / 2)) > 0) {
+    while (i > 1 && value.compareTo(get(i / 2)) > 0) {
       values[i] = values[i / 2];
       i /= 2;
     }
