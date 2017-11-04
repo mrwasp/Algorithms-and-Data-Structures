@@ -2,10 +2,10 @@ package tree;
 
 interface Tree<T> {
 
-    int size();
+  int size();
 
-    boolean insertObject(T object);
+  boolean insertObject(T object);
 
-    boolean removeObject(T object);
+  boolean removeObject(T object);
 
 }

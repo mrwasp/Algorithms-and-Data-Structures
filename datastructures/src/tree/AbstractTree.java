@@ -2,42 +2,42 @@ package tree;
 
 abstract class AbstractTree<T> implements Tree<T> {
 
-    private Node<T> root;
-    int size;
+  private Node<T> root;
+  int size;
 
-    // @Override Object class methods //--------------------------------------------------------------------------------
+  // @Override Object class methods //--------------------------------------------------------------------------------
 
-    @Override
-    public String toString() {
-        return String.format("---%s--- size: %d", getName(), size);
-    }
+  @Override
+  public String toString() {
+    return String.format("---%s--- size: %d", getName(), size);
+  }
 
-    // @Override Tree interface methods //------------------------------------------------------------------------------
+  // @Override Tree interface methods //------------------------------------------------------------------------------
 
-    public int size() {
-        return size;
-    }
+  public int size() {
+    return size;
+  }
 
-    public abstract boolean insertObject(T object);
+  public abstract boolean insertObject(T object);
 
-    public abstract boolean removeObject(T object);
+  public abstract boolean removeObject(T object);
 
-    // AbstractTree class  methods //-----------------------------------------------------------------------------------
+  // AbstractTree class  methods //-----------------------------------------------------------------------------------
 
-    abstract String getName();
+  abstract String getName();
 
-    abstract Node<T> createNode(T object, Node<T> parent);
+  abstract Node<T> createNode(T object, Node<T> parent);
 
-    Node<T> getRoot() {
-        return root;
-    }
+  Node<T> getRoot() {
+    return root;
+  }
 
-    void setRoot(Node<T> root) {
-        this.root = root;
-    }
+  void setRoot(Node<T> root) {
+    this.root = root;
+  }
 
-    boolean isRoot(Node<T> node) {
-        return node == root;
-    }
+  boolean isRoot(Node<T> node) {
+    return node == root;
+  }
 
 }
