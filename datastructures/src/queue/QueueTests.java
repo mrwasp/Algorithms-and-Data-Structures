@@ -8,7 +8,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class QueueTests {
-  private static final int SIZE = 10;
+  private static final int SIZE = 1000;
 
   @Test
   public void heapInsert() {
@@ -21,6 +21,26 @@ public class QueueTests {
   }
 
   @Test
+  public void beapInsert() {
+    BinaryHeap<Integer> binaryHeap = new BinaryHeap<>();
+    List<Integer> numbers = testList();
+    for (Integer i : numbers) {
+      binaryHeap.insert(i);
+    }
+    heapTest(binaryHeap);
+  }
+
+  @Test
+  public void leftishHeapInsert() {
+    LeftistHeap<Integer> binaryHeap = new LeftistHeap<>();
+    List<Integer> numbers = testList();
+    for (Integer i : numbers) {
+      binaryHeap.insert(i);
+    }
+    heapTest(binaryHeap);
+  }
+
+  @Test
   public void heapCreateFromArray() {
     List<Integer> numbers = testList();
     Integer[] integers = new Integer[SIZE];
@@ -28,10 +48,10 @@ public class QueueTests {
     heapTest(heap);
   }
 
-  private void heapTest(Heap<Integer> heap) {
+  private void heapTest(Queue<Integer> queue) {
     for (int i = SIZE; i > 0; i--) {
-      Assert.assertEquals(i, (int) heap.peek());
-      Assert.assertEquals(i, (int) heap.poll());
+      Assert.assertEquals(i, (int) queue.peek());
+      Assert.assertEquals(i, (int) queue.poll());
     }
   }
 
