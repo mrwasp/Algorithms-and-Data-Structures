@@ -8,4 +8,6 @@ public interface Queue<T extends Comparable<T>> {
 
   void insert(T value);
 
+  void replace(int id, T value);
+
 }

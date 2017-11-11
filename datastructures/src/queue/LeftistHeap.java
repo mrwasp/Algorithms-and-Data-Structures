@@ -1,13 +1,14 @@
 package queue;
 
 public class LeftistHeap<T extends Comparable<T>> implements ConcatenableQueue<T> {
-  private Node<T> root;
 
-  private class Node<T extends Comparable<T>> {
+  private Node root;
+
+  private class Node {
     T element;
-    Node<T> left;
-    Node<T> right;
-    int npl;
+    Node left;
+    Node right;
+    int rank;
   }
 
   @SuppressWarnings("unchecked")
@@ -32,15 +33,24 @@ public class LeftistHeap<T extends Comparable<T>> implements ConcatenableQueue<T
 
   @Override
   public void insert(T value) {
-    Node<T> node = new Node<>();
-    node.element =  value;
+    Node node = new Node();
+    node.element = value;
     root = union(root, node);
   }
 
-  private Node<T> union(Node<T> node1, Node<T> node2) {
-    Node<T> currentNode;
-    if (node1 == null) return node2;
-    if (node2 == null) return node1;
+  @Override
+  public void replace(int id, T value) {
+
+  }
+
+  private Node union(Node node1, Node node2) {
+    Node currentNode;
+    if (node1 == null) {
+      return node2;
+    }
+    if (node2 == null) {
+      return node1;
+    }
     if (greater(node1.element, node2.element)) {
       currentNode = node1;
       currentNode.right = union(node1.right, node2);
@@ -48,15 +58,15 @@ public class LeftistHeap<T extends Comparable<T>> implements ConcatenableQueue<T
       currentNode = node2;
       currentNode.right = union(node2.right, node1);
     }
-    if (currentNode.left == null || currentNode.left.npl < currentNode.right.npl) {
-      Node<T> temp = currentNode.left;
+    if (currentNode.left == null || currentNode.left.rank < currentNode.right.rank) {
+      Node temp = currentNode.left;
       currentNode.left = currentNode.right;
       currentNode.right = temp;
     }
     if (currentNode.right == null) {
-      currentNode.npl = 0;
+      currentNode.rank = 0;
     } else {
-      currentNode.npl = currentNode.right.npl + 1;
+      currentNode.rank = currentNode.right.rank + 1;
     }
     return currentNode;
   }
